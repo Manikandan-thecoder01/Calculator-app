@@ -3,36 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A modern, responsive calculator app built with HTML, CSS, and JavaScript">
+    <meta name="theme-color" content="#000000">
     <title>Calculator</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="main.js" as="script">
+    
+    <!-- DNS prefetch for potential future resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="Calculator">
-        <input id="display" readonly>
-        <div id="keys">
-            <button onclick="appendtodisplay('+')">+</button>
-            <button onclick="appendtodisplay('-')">-</button>
-            <button onclick="appendtodisplay('*')">*</button>
-            <button onclick="appendtodisplay('/')">/</button>
-            <button onclick="appendtodisplay('1')">1</button>
-            <button onclick="appendtodisplay('2')">2</button>
-            <button onclick="appendtodisplay('3')">3</button>
-            <button onclick="appendtodisplay('4')">4</button>
-            <button onclick="appendtodisplay('5')">5</button>
-            <button onclick="appendtodisplay('6')">6</button>
-            <button onclick="appendtodisplay('7')">7</button>
-            <button onclick="appendtodisplay('8')">8</button>
-            <button onclick="appendtodisplay('9')">9</button>
-            <button onclick="appendtodisplay('0')">0</button>
-            <button onclick="appendtodisplay('(')">(</button>
-            <button onclick="appendtodisplay(')')">)</button>
-            <button onclick="cleardisplay()">C</button>
-            <button onclick="appendtodisplay('.')">.</button>
-            <button onclick="calculate()">=</button>
-
+    <main>
+        <div id="calculator" role="application" aria-label="Calculator">
+            <input 
+                id="display" 
+                type="text"
+                readonly 
+                aria-label="Calculator display"
+                aria-live="polite"
+                autocomplete="off"
+                inputmode="none">
+            
+            <div id="keys" role="grid" aria-label="Calculator buttons">
+                <!-- Operators row -->
+                <button type="button" data-action="operator" data-value="+" aria-label="Plus">+</button>
+                <button type="button" data-action="operator" data-value="-" aria-label="Minus">-</button>
+                <button type="button" data-action="operator" data-value="*" aria-label="Multiply">×</button>
+                <button type="button" data-action="operator" data-value="/" aria-label="Divide">÷</button>
+                
+                <!-- Numbers row 1 -->
+                <button type="button" data-action="number" data-value="7" aria-label="Seven">7</button>
+                <button type="button" data-action="number" data-value="8" aria-label="Eight">8</button>
+                <button type="button" data-action="number" data-value="9" aria-label="Nine">9</button>
+                <button type="button" data-action="clear" aria-label="Clear">C</button>
+                
+                <!-- Numbers row 2 -->
+                <button type="button" data-action="number" data-value="4" aria-label="Four">4</button>
+                <button type="button" data-action="number" data-value="5" aria-label="Five">5</button>
+                <button type="button" data-action="number" data-value="6" aria-label="Six">6</button>
+                <button type="button" data-action="operator" data-value="(" aria-label="Open parenthesis">(</button>
+                
+                <!-- Numbers row 3 -->
+                <button type="button" data-action="number" data-value="1" aria-label="One">1</button>
+                <button type="button" data-action="number" data-value="2" aria-label="Two">2</button>
+                <button type="button" data-action="number" data-value="3" aria-label="Three">3</button>
+                <button type="button" data-action="operator" data-value=")" aria-label="Close parenthesis">)</button>
+                
+                <!-- Bottom row -->
+                <button type="button" data-action="number" data-value="0" aria-label="Zero">0</button>
+                <button type="button" data-action="decimal" data-value="." aria-label="Decimal point">.</button>
+                <button type="button" data-action="calculate" aria-label="Equals" class="equals">=</button>
+            </div>
         </div>
-
-    </div>
-    <script src="main.js"></script>
+    </main>
+    
+    <!-- Load JavaScript with defer for better performance -->
+    <script src="main.js" defer></script>
 </body>
 </html>
